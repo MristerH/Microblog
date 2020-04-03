@@ -4,6 +4,7 @@ from app.forms import LoginForms, RegistrationForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 from werkzeug.urls import url_parse
+from datetime import datetime
 
 
 @app.route('/')
@@ -62,13 +63,13 @@ def register():
 @app.route('/user/<username>')
 @login_required
 def user(username):
-    user = User.query.filter_by(username = username).first_or_404()
+    user = User.query.filter_by(username=username).first_or_404()
     posts = [
         {'author': user, 'body': 'Test Post 1'},
         {'author': user, 'body': 'Test Post 2'}
     ]
-    return render_template('user.html', user = user, posts = posts)
-    
+    return render_template('user.html', user=user, posts=posts)
+
 
 
 
